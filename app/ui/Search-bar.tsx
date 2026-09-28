@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import 'primeicons/primeicons.css';
 
 type SearchProps = {
     searchUser: string;
@@ -17,16 +18,26 @@ export default function Search({ searchUser, setSearchUser }: SearchProps) {
 
     return (
         <main>
-            <div className="flex flex-column md:flex-row md:justify-content-between md:align-items-center gap-3">
-                <span className="">
-                    <input value={searchUser} onChange={ handleSearch} placeholder="Search user" className='w-full' />
-                </span>
+            <div className="flex flex-col gap-3 md:flex-row md:align-items-center md:justify-between">
+                <div className='relative w-full md:w-1/2'>
+                    <div className='flex items-center rounded-lg border border-gray-300 bg-white shadow-sm transition focus-within:border-yellow-500 focus-within:ring-2 focus-within:ring-yellow-400'>
+                        <i className="pi pi-search ml-4 text-gray-400" />
+                        <input
+                            type='text'
+                            value={searchUser}
+                            onChange={handleSearch}
+                            placeholder="Search user"
+                            className='w-full border-none bg-transparent px-3 py-3 text-gray-900 outline-none'
+                        />
+                    </div>
+                </div>
 
                 <button
                     onClick={() => router.push('')}
-                    className="bg-amber-300"
+                    className="flex items-center justify-center gap-2 rounded-lg bg-yellow-400 px-4 py-3 font-semibold text-black transition hover:bg-yellow-500"
                 >
-                    Add user
+                    <i className='pi pi-plus'/>
+                    <span>Add user</span>
                 </button>
             </div>
         </main>
