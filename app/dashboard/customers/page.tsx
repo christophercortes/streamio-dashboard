@@ -42,36 +42,53 @@ export default function Customers() {
     const formatDate = (date?: string | null) => (date ? new Date(date).toDateString() : '-');
 
     return (
-        <main>
-            <Search searchUser={ searchUser} setSearchUser={setSearchUser} />
-            <h1>{ }</h1>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Full Name:</th>
-                        <th>Phone Number:</th>
-                        <th>Email:</th>
-                        <th>Address:</th>
-                        <th>Last Login:</th>
-                        <th>Created:</th>
-                        <th>Updated:</th>
+        <main className='min-h-screen bg-gray-50 p-6'>
+            <div className='mx-auto max-w-7xl'>
+                <div className='mb-6'>
+                    <h1 className='text-2xl font-bold text-gray-900'>
+                        Customers
+                    </h1>
+                    <p className='mt-1 text-sm text-gray-500'>
+                        Manage and view customer information
+                    </p>
+                </div>
+                <div className='mb-4'>
+                    <Search
+                        searchUser={searchUser}
+                        setSearchUser={setSearchUser}
+                    />
+                </div>
+                <div className='overflow-x-auto'>
+                    <table className='w-full text-left text-sm'>
+                        <thead className='border-b border-gray-200 bg-gray-50'>
+                            <tr>
+                                <th className='px-6 py-4 font-semibold text-gray-700'>Full Name</th>
+                                <th className='px-6 py-4 font-semibold text-gray-700'>Phone Number</th>
+                                <th className='px-6 py-4 font-semibold text-gray-700'>Email</th>
+                                <th className='px-6 py-4 font-semibold text-gray-700'>Address</th>
+                                <th className='px-6 py-4 font-semibold text-gray-700'>Last Login</th>
+                                <th className='px-6 py-4 font-semibold text-gray-700'>Created</th>
+                                <th className='px-6 py-4 font-semibold text-gray-700'>Updated</th>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    {filterUser.map((user) => (
-                        <tr key={user.id}>
-                            <td>{user.fullName}</td>
-                            <td>{user.userPhone}</td>
-                            <td>{user.userEmail}</td>
-                            <td>{user.userAddress}</td>
-                            <td>{formatDate(user.lastLogin)}</td>
-                            <td>{formatDate(user.createdDate)}</td>
-                            <td>{formatDate(user.updatedDate)}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+                            </tr>
+                        </thead>
+                        <tbody className='divide-y divide-gray-100'>
+                            {filterUser.map((user) => (
+                                <tr key={user.id}
+                                className='transition-colors hover:bg-gray-50'>
+                                    <td className='whitespace-nowrap px-6 py-4 font-medium text-gray-900'>{user.fullName}</td>
+                                    <td className='whitespace-nowrap px-6 py-4 text-gray-600'>{user.userPhone}</td>
+                                    <td className='px-6 py-4 text-gray-600'>{user.userEmail}</td>
+                                    <td className='px-6 py-4 text-gray-600'>{user.userAddress}</td>
+                                    <td className='whitespace-nowrap px-6 py-4 font-medium text-gray-600'>{formatDate(user.lastLogin)}</td>
+                                    <td className='whitespace-nowrap px-6 py-4 font-medium text-gray-600'>{formatDate(user.createdDate)}</td>
+                                    <td className='whitespace-nowrap px-6 py-4 font-medium text-gray-600'>{formatDate(user.updatedDate)}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </main>
     )
 }
